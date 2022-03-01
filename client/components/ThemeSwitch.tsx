@@ -1,12 +1,17 @@
-import { useColorMode, Button} from '@chakra-ui/react'
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { useColorMode, Button } from "@chakra-ui/react";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 const ThemeSwitch = () => {
-  const { colorMode, toggleColorMode } = useColorMode()
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Button mx={3} onClick={()=>{toggleColorMode()}} bg="transparent">
-      {colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
+    <Button
+      mx={2}
+      onClick={() => {
+        toggleColorMode();
+      }}
+    >
+      {colorMode === "dark" ? <SunIcon /> : <MoonIcon />}
     </Button>
-  )
-}
+  );
+};
 
-export default ThemeSwitch
+export default ThemeSwitch;
