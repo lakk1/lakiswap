@@ -11,7 +11,7 @@ export default function Home() {
       <Head>
         <title>lakiswap</title>
         <meta name="description" content="Decentralize exchange" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logo.svg" />
       </Head>
 
       <Box
