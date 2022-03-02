@@ -51,6 +51,9 @@ const ConnectWallet = () => {
     connectWalletOnPageLoad();
   }, []);
 
+  const alletBoxBG = useColorModeValue("white", "gray.600");
+  const addressBG = useColorModeValue("gray.400", "gray.800");
+
   if (active) {
     return (
       <Menu>
@@ -66,7 +69,7 @@ const ConnectWallet = () => {
             sx={{
               display: "inline-flex",
               mr: 4,
-              bg: useColorModeValue("white", "gray.600"),
+              bg: alletBoxBG,
               borderRadius: "md",
               p: 2,
               px: 3,
@@ -78,9 +81,8 @@ const ConnectWallet = () => {
               {balance && parseFloat(formatEther(balance)).toFixed(2)} ETH
             </Box>
             <Box
-              bg={useColorModeValue("gray.400", "gray.800")}
               sx={{
-                bg: useColorModeValue("gray.400", "gray.800"),
+                bg: addressBG,
                 borderRadius: "md",
                 py: 1,
                 px: 4,
