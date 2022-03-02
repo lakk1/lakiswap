@@ -3,8 +3,9 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import RootLayout from "components/Layout";
 import SwapForm from "components/SwapForm";
+import { ReactElement } from "react";
 
-const Home: NextPage = () => {
+export default function Home() {
   return (
     <div>
       <Head>
@@ -26,7 +27,6 @@ const Home: NextPage = () => {
       </Box>
     </div>
   );
-};
+}
 
-Home.getLayout = (page) => <RootLayout>{page}</RootLayout>;
-export default Home;
+Home.getLayout = (page: ReactElement) => <RootLayout>{page}</RootLayout>;

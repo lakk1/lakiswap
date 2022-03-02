@@ -10,16 +10,17 @@ const getLibrary = (provider: any) => {
   return new ethers.providers.Web3Provider(provider);
 };
 
-export type Page<P = {}> = NextPage<P> & {
+type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
-type Props = AppProps & {
-  Component: Page;
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
 };
 
-function MyApp({ Component, pageProps }: Props) {
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout ?? ((page) => page);
-
   return (
     <ChakraProvider theme={theme}>
       <Web3ReactProvider getLibrary={getLibrary}>
@@ -28,5 +29,3 @@ function MyApp({ Component, pageProps }: Props) {
     </ChakraProvider>
   );
 }
-
-export default MyApp;
