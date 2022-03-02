@@ -9,16 +9,16 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useWeb3React } from "@web3-react/core";
-import { injected } from "utils";
+import { injected, fetcher } from "utils";
 import { useEffect } from "react";
+import { formatEther } from "@ethersproject/units";
 import useSWR from "swr";
 
 const ConnectWallet = () => {
   const { active, account, activate, deactivate, library } = useWeb3React();
-  const { data, error } = useSWR(["getBalance", account, "latest"], {
+  const { data: balance, error } = useSWR(["getBalance", account, "latest"], {
     fetcher: fetcher(library),
   });
-  console.log({ data, error });
   async function connect() {
     try {
       await activate(injected);
@@ -74,7 +74,9 @@ const ConnectWallet = () => {
               fontWeight: "semibold",
             }}
           >
-            <Box>1.24 ETH</Box>
+            <Box>
+              {balance && parseFloat(formatEther(balance)).toFixed(2)} ETH
+            </Box>
             <Box
               bg={useColorModeValue("gray.400", "gray.800")}
               sx={{
