@@ -9,20 +9,20 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useWeb3React } from "@web3-react/core";
-import { InjectedConnector } from "@web3-react/injected-connector";
+import { injected } from "utils";
 import { useEffect } from "react";
-
-export const injected = new InjectedConnector({
-  supportedChainIds: [1, 3, 4, 5, 42],
-});
+import useSWR from "swr";
 
 const ConnectWallet = () => {
-  const { active, account, activate, deactivate } = useWeb3React();
-
+  const { active, account, activate, deactivate, library } = useWeb3React();
+  const { data, error } = useSWR(["getBalance", account, "latest"], {
+    fetcher: fetcher(library),
+  });
+  console.log({ data, error });
   async function connect() {
     try {
       await activate(injected);
-      localStorage.setItem("isWalletConnected", true);
+      localStorage.setItem("isWalletConnected", "true");
     } catch (ex) {
       console.log(ex);
     }
@@ -31,7 +31,7 @@ const ConnectWallet = () => {
   async function disconnect() {
     try {
       deactivate();
-      localStorage.setItem("isWalletConnected", false);
+      localStorage.setItem("isWalletConnected", "false");
     } catch (ex) {
       console.log(ex);
     }
@@ -42,7 +42,7 @@ const ConnectWallet = () => {
       if (localStorage?.getItem("isWalletConnected") === "true") {
         try {
           await activate(injected);
-          localStorage.setItem("isWalletConnected", true);
+          localStorage.setItem("isWalletConnected", "true");
         } catch (ex) {
           console.log(ex);
         }
