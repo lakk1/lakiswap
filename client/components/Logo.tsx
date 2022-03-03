@@ -7,6 +7,7 @@ const Logo = () => {
       sx={{
         display: "inline-flex",
         color: "newblue.500",
+        flex: { base: 1, md: "none" },
       }}
     >
       <BsFillHexagonFill size={24} />
@@ -15,6 +16,7 @@ const Logo = () => {
         fontWeight={"bold"}
         color={useColorModeValue("newblue.900", "newblue.100")}
         letterSpacing={6}
+        display={{ base: "none", md: "inline-flex" }}
       >
         LAKI
       </Text>

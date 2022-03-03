@@ -51,17 +51,16 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <Logo />
-
-          <HStack spacing={8} alignItems={"center"}>
-            <HStack
-              as={"nav"}
-              spacing={4}
-              display={{ base: "none", md: "flex" }}
-            >
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </HStack>
+          <HStack
+            as={"nav"}
+            spacing={4}
+            flex={1}
+            display={{ base: "none", md: "flex" }}
+            ml={16}
+          >
+            {Links.map((link) => (
+              <NavLink key={link}>{link}</NavLink>
+            ))}
           </HStack>
           <Flex alignItems={"center"}>
             <ConnectWallet />

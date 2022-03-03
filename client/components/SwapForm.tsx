@@ -34,6 +34,7 @@ const SwapForm = () => {
       sx={{
         display: "flex",
         width: "480px",
+        maxW: "100%",
         bg: useColorModeValue("white", "gray.800"),
         p: 6,
         borderRadius: "2xl",

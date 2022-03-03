@@ -7,7 +7,7 @@ const RootLayout = (props: { children: any }) => {
   return (
     <Box
       px={{
-        base: 20,
+        base: 4,
         md: 36,
       }}
       height="100vh"

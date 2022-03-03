@@ -71,13 +71,13 @@ const ConnectWallet = () => {
               mr: 4,
               bg: alletBoxBG,
               borderRadius: "md",
-              p: 2,
-              px: 3,
+              px: { base: 0, md: 3 },
+              py: { base: 0, md: 2 },
               alignItems: "center",
               fontWeight: "semibold",
             }}
           >
-            <Box>
+            <Box display={{ base: "none", md: "inline" }}>
               {balance && parseFloat(formatEther(balance)).toFixed(2)} ETH
             </Box>
             <Box
@@ -89,7 +89,14 @@ const ConnectWallet = () => {
                 ml: 2,
               }}
             >
-              {`${account?.slice(0, 6)}...${account?.slice(38)}`}{" "}
+              <Box display={{ base: "none", md: "inline" }}>{`${account?.slice(
+                0,
+                6
+              )}...${account?.slice(38)}`}</Box>
+              <Box display={{ base: "inline", md: "none" }}>{`${account?.slice(
+                0,
+                4
+              )}...${account?.slice(40)}`}</Box>
               <ChevronDownIcon />
             </Box>
           </Box>
