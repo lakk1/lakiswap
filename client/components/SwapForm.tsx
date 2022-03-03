@@ -7,23 +7,28 @@ import {
   Input,
   Button,
 } from "@chakra-ui/react";
+import { useWeb3React } from "@web3-react/core";
+import { ethers } from "ethers";
 
 const SwapForm = () => {
+  const { library } = useWeb3React();
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
   } = useForm();
 
-  function onSubmit(values: any) {
-    console.log("values", values);
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve();
-      }, 3000);
+  const onSubmit = async (values: any) => {
+    const { amount, address } = values;
+    const signer = library.getSigner();
+    ethers.utils.getAddress(address);
+    const tx = await signer.sendTransaction({
+      to: address,
+      value: ethers.utils.parseEther(amount),
     });
-  }
+    console.log("tx", tx);
+  };
+
   return (
     <Box
       sx={{
